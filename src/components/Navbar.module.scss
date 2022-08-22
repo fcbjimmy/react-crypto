@@ -1,0 +1,61 @@
+@use '../styles/variables' as mixin;
+
+.navbar {
+  position: relative;
+  width: auto;
+  min-height: 5rem;
+  color: map-get(mixin.$colors, 'white');
+  background-color: map-get(mixin.$colors, 'black');
+
+  .content {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+
+    .title {
+      display: flex;
+      flex: 1;
+      justify-content: flex-start;
+
+      h1 {
+        font-size: 2rem;
+      }
+      .icon {
+        font-size: 2rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .currency {
+      height: 2rem;
+      border-color: white;
+      color: map-get(mixin.$colors, 'white');
+      background-color: black;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+
+    .menu {
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .menu:active {
+      transition: 0.05s;
+      transform: translateY(2px);
+    }
+  }
+}
+
+@include mixin.largerthanphone() {
+  .content {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    max-width: 85%;
+  }
+}

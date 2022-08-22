@@ -1,0 +1,18 @@
+$colors: (
+  'black': #14161a,
+  'white': white,
+  'test': aqua,
+);
+
+//media queries
+$breakpoints: (
+  'sm': 570px,
+  'md': 768px,
+  'l': 948px,
+);
+
+@mixin largerthanphone() {
+  @media (min-width: map-get($breakpoints, 'sm')) {
+    @content;
+  }
+}
