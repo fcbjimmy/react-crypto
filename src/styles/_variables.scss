@@ -2,6 +2,7 @@ $colors: (
   'black': #14161a,
   'white': white,
   'test': aqua,
+  'yellow': #eebc1c,
 );
 
 //media queries
@@ -12,7 +13,13 @@ $breakpoints: (
 );
 
 @mixin largerthanphone() {
-  @media (min-width: map-get($breakpoints, 'sm')) {
+  @media (min-width: map-get($breakpoints, 'md')) {
+    @content;
+  }
+}
+
+@mixin tableMedia() {
+  @media (max-width: map-get($breakpoints, 'sm')) {
     @content;
   }
 }

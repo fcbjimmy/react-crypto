@@ -1,3 +1,97 @@
+@use '../styles/variables' as mixin;
+
 .container {
-  position: relative;
+  color: map-get(mixin.$colors, $key: 'white');
+  .tableContent {
+    width: auto;
+    border-collapse: collapse;
+    margin: 2.5rem auto;
+    font-size: 1rem;
+    overflow: scroll;
+
+    thead tr {
+      background-color: map-get(mixin.$colors, $key: 'yellow');
+      color: map-get(mixin.$colors, $key: 'black');
+      text-align: left;
+
+      th {
+        padding: 0.7rem 0.94rem;
+        font-weight: bold;
+      }
+    }
+    tbody tr {
+      border-bottom: 1px solid gray;
+      .image {
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+    tbody tr:hover {
+      background-color: lighten(map-get(mixin.$colors, 'black'), 20%);
+    }
+    tbody tr:last-of-type {
+      border-bottom: 2px solid map-get(mixin.$colors, 'yellow');
+    }
+  }
+}
+
+@include mixin.tableMedia() {
+  .tableContent thead {
+    display: none;
+  }
+
+  .tableContent,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  .tableContent tbody tr {
+    margin-bottom: 1rem;
+
+    .image {
+      display: flex;
+      justify-content: flex-end;
+    }
+    td {
+      text-align: right;
+      padding: 0 0 0 28%;
+      position: relative;
+      background-color: map-get(mixin.$colors, $key: 'yellow');
+    }
+    td::before {
+      content: attr(data-label);
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+      position: absolute;
+      left: 0;
+      width: 30%;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    td span {
+      padding: 0;
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: map-get(mixin.$colors, $key: 'black');
+    }
+  }
+}
+
+@include mixin.largerthanphone() {
+  .container {
+    .tableContent {
+      tbody tr {
+        td {
+          padding: 1rem;
+        }
+      }
+    }
+  }
 }
