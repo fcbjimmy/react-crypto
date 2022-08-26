@@ -1,13 +1,23 @@
 @use '../styles/variables' as mixin;
 
+.search {
+  display: flex;
+  justify-content: center;
+
+  input {
+    border: none;
+  }
+}
+
 .container {
   color: map-get(mixin.$colors, $key: 'white');
+  position: relative;
+
   .tableContent {
     width: auto;
     border-collapse: collapse;
     margin: 2.5rem auto;
     font-size: 1rem;
-    overflow: scroll;
 
     thead tr {
       background-color: map-get(mixin.$colors, $key: 'yellow');
@@ -21,10 +31,21 @@
     }
     tbody tr {
       border-bottom: 1px solid gray;
+      td {
+        @media (min-width: 571px) {
+          padding: 1rem;
+        }
+      }
       .image {
+        display: flex;
+
         img {
           width: 40px;
           height: 40px;
+          margin-right: 1rem;
+        }
+        p {
+          padding: 0.1rem 0;
         }
       }
     }
@@ -84,14 +105,14 @@
   }
 }
 
-@include mixin.largerthanphone() {
-  .container {
-    .tableContent {
-      tbody tr {
-        td {
-          padding: 1rem;
-        }
-      }
-    }
-  }
-}
+// @include mixin.largerthanphone() {
+//   .container {
+//     .tableContent {
+//       tbody tr {
+//         td {
+//           padding: 1rem;
+//         }
+//       }
+//     }
+//   }
+// }
