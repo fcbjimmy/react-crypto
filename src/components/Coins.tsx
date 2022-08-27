@@ -18,10 +18,10 @@ const Coins = ({ coins }: Props) => {
 
   return (
     <>
-      <div className={styles.search}>
-        <input type='text' placeholder='search' onChange={searchCoin} />
-      </div>
       <section className={styles.container}>
+        <div className={styles.search}>
+          <input type='text' placeholder='search' onChange={searchCoin} />
+        </div>
         <table className={styles.tableContent}>
           <thead>
             <tr>
