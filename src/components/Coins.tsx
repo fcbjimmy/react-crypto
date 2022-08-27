@@ -1,7 +1,7 @@
 import { Result } from '../helper/data.types';
 import styles from './Coins.module.scss';
-import Coin from './Coin';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   coins: Result[] | null;
@@ -9,6 +9,13 @@ interface Props {
 
 const Coins = ({ coins }: Props) => {
   const [findCoin, setFindCoin] = useState<string>('');
+  const navigate = useNavigate();
+
+  console.log(coins, 'hi');
+
+  const test = (data: React.MouseEventHandler<HTMLTableRowElement>) => {
+    console.log(data);
+  };
 
   //add debounce
   const searchCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,7 +27,7 @@ const Coins = ({ coins }: Props) => {
     <>
       <section className={styles.container}>
         <div className={styles.search}>
-          <input type='text' placeholder='search' onChange={searchCoin} />
+          <input type='text' placeholder='Search' onChange={searchCoin} />
         </div>
         <table className={styles.tableContent}>
           <thead>
@@ -39,11 +46,13 @@ const Coins = ({ coins }: Props) => {
                   return data;
                 } else if (data.name.toLowerCase().includes(findCoin)) {
                   return data;
+                } else if (data.symbol.toLowerCase().includes(findCoin)) {
+                  return data;
                 }
               })
               .map((coin, index) => {
                 return (
-                  <tr key={index}>
+                  <tr key={index} onClick={() => navigate('/' + coin.id)}>
                     <td data-label='Coin'>
                       <span className={styles.image}>
                         <img src={coin.image} alt={coin.name} />
@@ -54,16 +63,16 @@ const Coins = ({ coins }: Props) => {
                       </span>
                     </td>
                     <td data-label='Price'>
-                      <span>${coin.current_price}</span>
+                      <span>HK${coin.current_price}</span>
                     </td>
                     <td data-label='24H'>
-                      <span>{coin.price_change_24h}</span>
+                      <span>{coin.price_change_24h.toFixed(2)}</span>
                     </td>
                     <td data-label='Volume'>
                       <span>{coin.price_change_percentage_24h}</span>
                     </td>
                     <td data-label='Market Cap'>
-                      <span>{coin.market_cap}</span>
+                      <span>HK${coin.market_cap}</span>
                     </td>
                   </tr>
                 );

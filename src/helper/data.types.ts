@@ -1,4 +1,6 @@
-export interface Result {
+import { type } from 'os';
+
+export type Result = {
   ath: number;
   ath_change_percentage: number;
   ath_date: string;
@@ -25,6 +27,8 @@ export interface Result {
   symbol: string;
   total_supply: number;
   total_volume: number;
-}
+};
 
-export interface coinData {}
+export type CurrencyContext = {
+  currency: string;
+};

@@ -4,7 +4,9 @@ import axios from 'axios';
 import { Result } from './helper/data.types';
 import Navbar from './components/Navbar';
 import Coins from './components/Coins';
-
+import CoinDisplay from './components/CoinDisplay';
+import { Router, Route, Routes } from 'react-router-dom';
+import { AppContextProvider } from './context/Context';
 const url =
   'https://api.coingecko.com/api/v3/coins/markets?vs_currency=hkd&order=market_cap_desc&per_page=10&page=1&sparkline=false';
 
@@ -25,8 +27,13 @@ const App = () => {
 
   return (
     <>
-      <Navbar />
-      <Coins coins={coins} />
+      <AppContextProvider>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Coins coins={coins} />} />
+          {/* <Route path='/:id' element={<CoinDisplay />} /> */}
+        </Routes>
+      </AppContextProvider>
     </>
   );
 };
