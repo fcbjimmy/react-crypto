@@ -1,17 +1,15 @@
-import { Result } from '../helper/data.types';
+import { dataList } from '../helper/data.types';
 import styles from './Coins.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
-  coins: Result[] | null;
+  coins: dataList[] | null;
 }
 
 const Coins = ({ coins }: Props) => {
   const [findCoin, setFindCoin] = useState<string>('');
   const navigate = useNavigate();
-
-  console.log(coins, 'hi');
 
   const test = (data: React.MouseEventHandler<HTMLTableRowElement>) => {
     console.log(data);
@@ -63,7 +61,7 @@ const Coins = ({ coins }: Props) => {
                       </span>
                     </td>
                     <td data-label='Price'>
-                      <span>HK${coin.current_price}</span>
+                      <span>${coin.current_price}</span>
                     </td>
                     <td data-label='24H'>
                       <span>{coin.price_change_24h.toFixed(2)}</span>
@@ -72,7 +70,7 @@ const Coins = ({ coins }: Props) => {
                       <span>{coin.price_change_percentage_24h}</span>
                     </td>
                     <td data-label='Market Cap'>
-                      <span>HK${coin.market_cap}</span>
+                      <span>${coin.market_cap}</span>
                     </td>
                   </tr>
                 );

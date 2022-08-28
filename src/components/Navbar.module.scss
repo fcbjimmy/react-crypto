@@ -8,6 +8,7 @@
   background-color: map-get(mixin.$colors, 'black');
 
   .content {
+    width: 100%;
     position: absolute;
     inset: 0;
     margin: auto;
@@ -19,11 +20,18 @@
       flex: 1;
       justify-content: flex-start;
 
-      h1 {
-        font-size: 2rem;
+      a {
+        text-decoration: none;
       }
+
+      h1,
       .icon {
         font-size: 2rem;
+        cursor: pointer;
+        color: white;
+      }
+
+      .icon {
         margin-right: 0.5rem;
       }
     }
@@ -34,6 +42,7 @@
       color: map-get(mixin.$colors, 'white');
       background-color: black;
       margin-right: 1rem;
+
       cursor: pointer;
     }
 
@@ -56,6 +65,6 @@
     margin: auto;
     display: flex;
     align-items: center;
-    max-width: 85%;
+    max-width: 60rem;
   }
 }
