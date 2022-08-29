@@ -1,4 +1,4 @@
-import { dataList } from '../helper/data.types';
+import { dataList } from '../../helper/data.types';
 import styles from './Coins.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -61,16 +61,21 @@ const Coins = ({ coins }: Props) => {
                       </span>
                     </td>
                     <td data-label='Price'>
-                      <span>${coin.current_price}</span>
+                      <span>${coin.current_price.toLocaleString('en-US')}</span>
                     </td>
-                    <td data-label='24H'>
-                      <span>{coin.price_change_24h.toFixed(2)}</span>
+                    <td
+                      data-label='24H'
+                      className={
+                        coin.price_change_percentage_24h > 0 ? styles.positive : styles.negative
+                      }
+                    >
+                      <span>{coin.price_change_percentage_24h.toFixed(2)}%</span>
                     </td>
                     <td data-label='Volume'>
-                      <span>{coin.price_change_percentage_24h}</span>
+                      <span>${coin.total_volume.toLocaleString('en-US')}</span>
                     </td>
                     <td data-label='Market Cap'>
-                      <span>${coin.market_cap}</span>
+                      <span>${coin.market_cap.toLocaleString('en-US')}</span>
                     </td>
                   </tr>
                 );

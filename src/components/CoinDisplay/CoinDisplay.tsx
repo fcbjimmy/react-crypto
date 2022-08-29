@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from './CoinDisplay.module.scss';
 import { useParams } from 'react-router-dom';
-import { singleCoin } from '../helper/Api';
-import useAxiosFetch from '../hooks/useAxiosFetch';
-import { singleCoinType } from '../helper/data.types';
-import { AppContext } from '../context/Context';
+import { singleCoin } from '../../helper/Api';
+import useAxiosFetch from '../../hooks/useAxiosFetch';
+import { singleCoinType } from '../../helper/data.types';
+import { AppContext } from '../../context/Context';
+import CoinInfo from '../CoinInfo/CoinInfo';
+
 const CoinDisplay = () => {
   const [data, setData] = useState<singleCoinType | null>(null);
   const { id } = useParams();
@@ -19,11 +21,9 @@ const CoinDisplay = () => {
   }, [data, id, singleCoinData]);
 
   return (
-    <section className={styles.container}>
-      <img src={data?.image.large} />
-      <h1>{data?.name}</h1>
-      <h1>${data?.market_data.current_price[currency.toLowerCase()]}</h1>
-    </section>
+    <>
+      <CoinInfo data={data} currency={currency} />
+    </>
   );
 };
 

@@ -123,7 +123,7 @@ export type singleCoinType = {
     market_cap: { [key: string]: number };
     market_cap_change_24h: number;
     market_cap_change_24h_in_currency: { [key: string]: number };
-    market_cap_change_percentage_24h: number;
+    market_cap_change_percentage_24h?: number;
     market_cap_change_percentage_24h_in_currency: { [key: string]: number };
     market_cap_rank: number;
     max_supply: number;

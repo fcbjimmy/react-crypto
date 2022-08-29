@@ -2,8 +2,9 @@ import styles from './Navbar.module.scss';
 import { RiCoinsFill } from 'react-icons/ri';
 import { AiOutlineMenuFold } from 'react-icons/ai';
 import { useContext } from 'react';
-import { AppContext } from '../context/Context';
-import { useNavigate, Link } from 'react-router-dom';
+import { AppContext } from '../../context/Context';
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   const { setCurrency, currency } = useContext(AppContext);
 

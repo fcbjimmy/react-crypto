@@ -1,0 +1,27 @@
+@use '../../styles/variables' as mixin;
+.container {
+  color: white;
+  .rank {
+    max-width: 5rem;
+    border: 1px solid map-get(mixin.$colors, $key: 'rank');
+    background-color: map-get(mixin.$colors, $key: 'rank');
+    color: map-get(mixin.$colors, $key: 'white');
+    font-weight: large;
+    border-radius: 0.15rem;
+    padding: 0.15rem;
+  }
+  .logo {
+    width: 10rem;
+    height: 10rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 800;
+  }
+  .positive {
+    color: map-get(mixin.$colors, $key: 'positive');
+  }
+  .negative {
+    color: map-get(mixin.$colors, $key: 'negative');
+  }
+}

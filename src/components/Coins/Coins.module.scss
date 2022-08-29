@@ -1,4 +1,4 @@
-@use '../styles/variables' as mixin;
+@use '../../styles/variables' as mixin;
 
 .container {
   display: flex;
@@ -51,6 +51,12 @@
     }
     tbody tr {
       border-bottom: 1px solid gray;
+      .positive {
+        color: map-get(mixin.$colors, $key: 'positive');
+      }
+      .negative {
+        color: map-get(mixin.$colors, $key: 'negative');
+      }
       td {
         @media (min-width: 571px) {
           padding: 1rem;
@@ -113,6 +119,7 @@
       width: 30%;
       text-align: left;
       font-weight: 600;
+      color: white;
     }
 
     td span {
