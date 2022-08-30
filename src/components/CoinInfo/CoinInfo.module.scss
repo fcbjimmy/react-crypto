@@ -1,27 +1,100 @@
 @use '../../styles/variables' as mixin;
+
 .container {
   color: white;
-  .rank {
-    max-width: 5rem;
-    border: 1px solid map-get(mixin.$colors, $key: 'rank');
-    background-color: map-get(mixin.$colors, $key: 'rank');
-    color: map-get(mixin.$colors, $key: 'white');
-    font-weight: large;
-    border-radius: 0.15rem;
-    padding: 0.15rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .rankAndLogo {
+    width: 100%;
+    max-width: 42rem;
+    min-height: 15rem;
+    position: relative;
+
+    .rank {
+      max-width: 5rem;
+      border: 1px solid map-get(mixin.$colors, $key: 'rank');
+      background-color: map-get(mixin.$colors, $key: 'rank');
+      color: map-get(mixin.$colors, $key: 'white');
+      font-weight: large;
+      border-radius: 0.15rem;
+      padding: 0.15rem;
+    }
+    .logo {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      display: block;
+      width: 10rem;
+      height: 10rem;
+    }
   }
-  .logo {
-    width: 10rem;
-    height: 10rem;
+
+  .market {
+    font-size: 1.3rem;
+    font-weight: 600;
+    .currentPrice {
+      padding: 1rem;
+    }
   }
-  h1 {
-    font-size: 1.9rem;
-    font-weight: 800;
-  }
+
   .positive {
     color: map-get(mixin.$colors, $key: 'positive');
   }
+
   .negative {
     color: map-get(mixin.$colors, $key: 'negative');
+  }
+
+  .description {
+    max-width: 42rem;
+    padding: 1rem;
+  }
+
+  .table {
+    width: 100%;
+    max-width: 40rem;
+    font-weight: 600;
+    display: grid;
+    margin: 0.2rem;
+    grid-template-columns: (repeat(6, 1fr));
+    justify-content: center;
+    box-shadow: 4px 5px 6px 6px rgba(0, 0, 0, 0.87);
+
+    .item {
+      padding: 0.1rem;
+    }
+  }
+
+  .details {
+    width: 100%;
+    max-width: 40rem;
+    margin: 2rem 0;
+    font-weight: 600;
+    display: grid;
+    font-size: 1rem;
+    grid-template-rows: (repeat(4, 1fr));
+    box-shadow: 4px 5px 6px 6px rgba(0, 0, 0, 0.87);
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      margin: 0 0.5rem;
+      border-bottom: 0.1rem solid gray;
+
+      .tittle {
+        color: lighten(map-get(mixin.$colors, 'black'), 75%);
+      }
+    }
+  }
+}
+
+@include mixin.largerthanphone() {
+  .details {
+    width: 100vw;
+    grid-template-rows: (repeat(2, 1fr)) !important;
+    grid-template-columns: (repeat(2, 1fr));
   }
 }

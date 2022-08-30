@@ -85,13 +85,17 @@
 }
 
 @include mixin.tableMedia() {
+  .rank {
+    color: red;
+  }
+
   .tableContent thead {
     display: none;
   }
 
   .tableContent,
-  tbody,
-  tr,
+  .tableBody,
+  .tableRow,
   td {
     display: block;
     width: 100%;
@@ -131,15 +135,3 @@
     }
   }
 }
-
-// @include mixin.largerthanphone() {
-//   .container {
-//     .tableContent {
-//       tbody tr {
-//         td {
-//           padding: 1rem;
-//         }
-//       }
-//     }
-//   }
-// }

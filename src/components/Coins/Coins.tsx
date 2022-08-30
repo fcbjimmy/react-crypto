@@ -37,7 +37,7 @@ const Coins = ({ coins }: Props) => {
               <th>Market Cap</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className={styles.tableBody}>
             {coins
               ?.filter((data) => {
                 if (findCoin === '') {
@@ -50,7 +50,11 @@ const Coins = ({ coins }: Props) => {
               })
               .map((coin, index) => {
                 return (
-                  <tr key={index} onClick={() => navigate('/' + coin.id)}>
+                  <tr
+                    key={index}
+                    className={styles.tableRow}
+                    onClick={() => navigate('/' + coin.id)}
+                  >
                     <td data-label='Coin'>
                       <span className={styles.image}>
                         <img src={coin.image} alt={coin.name} />
