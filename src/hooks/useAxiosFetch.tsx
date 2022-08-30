@@ -5,6 +5,7 @@ import { dataList, singleCoinType } from '../helper/data.types';
 const useAxiosFetch = (dataurl: string) => {
   const [dataList, setDataList] = useState<dataList[] | null>(null);
   const [singleCoinData, setSingleCoinData] = useState<singleCoinType | null>(null);
+  const [dataChart, setDataChart] = useState();
   const [error, setError] = useState<string | null | unknown>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -19,6 +20,7 @@ const useAxiosFetch = (dataurl: string) => {
         if (isMounted) {
           setDataList(res.data);
           setSingleCoinData(res.data);
+          setDataChart(res.data);
           setError(null);
         }
       } catch (err) {
@@ -40,7 +42,7 @@ const useAxiosFetch = (dataurl: string) => {
     return cleanUp;
   }, [dataurl]);
 
-  return { dataList, singleCoinData, error, isLoading };
+  return { dataList, singleCoinData, dataChart, error, isLoading };
 };
 
 export default useAxiosFetch;
