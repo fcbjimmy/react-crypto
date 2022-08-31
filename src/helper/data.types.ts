@@ -158,3 +158,9 @@ export type singleCoinType = {
   status_updates: [];
   tickers: object;
 };
+
+export type historicData = {
+  market_caps: [][];
+  prices: [number, number][];
+  total_volumes: [][];
+};

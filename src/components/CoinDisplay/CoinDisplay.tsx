@@ -6,10 +6,10 @@ import { singleCoinType } from '../../helper/data.types';
 import { AppContext } from '../../context/Context';
 import CoinInfo from '../CoinInfo/CoinInfo';
 import LineChart from '../Chart/LineChart';
-import { Line } from 'react-chartjs-2';
-
+import style from './CoinDisplay.module.scss';
 const CoinDisplay = () => {
   const [data, setData] = useState<singleCoinType | null>(null);
+
   const { id } = useParams();
   const { currency } = useContext(AppContext);
 
@@ -21,10 +21,10 @@ const CoinDisplay = () => {
   }, [data, id, singleCoinData]);
 
   return (
-    <>
+    <div className={style.container}>
       <CoinInfo data={data} currency={currency} />
       <LineChart data={data} />
-    </>
+    </div>
   );
 };
 
