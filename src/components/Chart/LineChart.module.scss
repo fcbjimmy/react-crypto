@@ -4,5 +4,11 @@
   align-items: center;
   justify-content: center;
   width: 85%;
-  margin: 10rem 0;
+  margin: 5rem 0;
+}
+
+.buttons {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
 }

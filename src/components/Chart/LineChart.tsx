@@ -3,35 +3,42 @@ import { historicalData } from '../../helper/Api';
 import { singleCoinType } from '../../helper/data.types';
 import { AppContext } from '../../context/Context';
 import useAxiosFetch from '../../hooks/useAxiosFetch';
-import { SyncLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart, Line } from 'react-chartjs-2';
 import style from './LineChart.module.scss';
+import Button from '../Button/Button';
+import { buttonValues } from '../../helper/chart';
+
 interface Props {
   data: singleCoinType | null;
 }
 
 const LineChart = ({ data }: Props) => {
-  const [days, setDays] = useState(1);
+  const [days, setDays] = useState<number>(1);
   const { currency } = useContext(AppContext);
-  const { dataChart, isLoading } = useAxiosFetch(historicalData(data?.id, currency));
+  const { dataChart, isLoading } = useAxiosFetch(historicalData(data?.id, currency, days));
 
   ChartJS.register(...registerables);
+
+  const handleClick = (value: number) => setDays(value);
+  console.log(days);
+
+  // console.log(dataChart?.prices);
+
+  // console.log(days, 'days');
 
   return (
     <>
       {isLoading ? (
-        <SyncLoader color={'#FFFFFF'} />
+        <ClipLoader color={'#FFFFFF'} size={'250'} />
       ) : (
         <div className={style.container}>
           <Line
             data={{
               labels: dataChart?.prices.map((coin) => {
                 let date = new Date(coin[0]);
-                let time =
-                  date.getHours() > 0
-                    ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-                    : `${date.getHours()}:${date.getMinutes()} AM`;
+                let time = `${date.getHours()}:${date.getMinutes()}`;
                 return days === 1 ? time : date.toLocaleTimeString();
               }),
               datasets: [
@@ -44,6 +51,19 @@ const LineChart = ({ data }: Props) => {
             }}
             options={{ elements: { point: { radius: 1 } } }}
           />
+          <div className={style.buttons}>
+            {buttonValues.map((obj) => {
+              return (
+                <Button
+                  key={obj.value}
+                  selected={days === obj.value}
+                  onClick={() => setDays(obj.value)}
+                >
+                  {obj.label}
+                </Button>
+              );
+            })}
+          </div>
         </div>
       )}
     </>

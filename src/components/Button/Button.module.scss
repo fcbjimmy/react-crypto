@@ -1,0 +1,37 @@
+@use '../../styles/variables' as mixin;
+
+.selected {
+  font-size: 0.7rem;
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+  width: 5rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  font-weight: bold;
+}
+
+.notSelected {
+  color: white;
+  font-size: 0.6rem;
+  background-color: black;
+  border: 1px solid white;
+  text-align: center;
+  width: 4rem;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.selected,
+.notSelected:hover {
+  cursor: pointer;
+}
+
+@include mixin.largerthanphone() {
+  .selected,
+  .notSelected {
+    font-size: 1rem;
+    width: 7rem;
+  }
+}
