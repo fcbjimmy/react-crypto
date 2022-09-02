@@ -1,20 +1,38 @@
+import { useContext, useEffect } from 'react';
 import { dataList } from '../../helper/data.types';
 import styles from './Coins.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
-
-interface Props {
-  coins: dataList[] | null;
-}
-
-const Coins = ({ coins }: Props) => {
+import useAxiosFetch from '../../hooks/useAxiosFetch';
+import { coinList } from '../../helper/Api';
+import { AppContext } from '../../context/Context';
+import { ClipLoader } from 'react-spinners';
+const Coins = () => {
+  const [coins, setCoins] = useState<dataList[]>([]);
   const [findCoin, setFindCoin] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const { currency } = useContext(AppContext);
+  const { dataList, isLoading } = useAxiosFetch(coinList(currency, page));
   const navigate = useNavigate();
 
-  //add debounce
+  useEffect(() => {
+    setCoins((prev) => [...prev, ...dataList]);
+  }, [currency, dataList]);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setPage((prev) => prev + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+  }, []);
+
   const searchCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setFindCoin(e.target.value);
   };
 
@@ -83,6 +101,7 @@ const Coins = ({ coins }: Props) => {
               })}
           </tbody>
         </table>
+        {isLoading && <ClipLoader color='#fff' />}
       </section>
     </>
   );

@@ -31,7 +31,7 @@ const LineChart = ({ data }: Props) => {
   return (
     <>
       {isLoading ? (
-        <ClipLoader color={'#FFFFFF'} size={'250'} />
+        <ClipLoader color={'#FFFFFF'} size='250px' />
       ) : (
         <div className={style.container}>
           <Line

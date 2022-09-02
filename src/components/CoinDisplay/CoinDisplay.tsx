@@ -7,13 +7,14 @@ import { AppContext } from '../../context/Context';
 import CoinInfo from '../CoinInfo/CoinInfo';
 import LineChart from '../Chart/LineChart';
 import style from './CoinDisplay.module.scss';
+import Skeleton from 'react-loading-skeleton';
 
 const CoinDisplay = () => {
   const [data, setData] = useState<singleCoinType | null>(null);
   const { id } = useParams();
   const { currency } = useContext(AppContext);
 
-  const { singleCoinData } = useAxiosFetch(singleCoin(id));
+  const { singleCoinData, isLoading } = useAxiosFetch(singleCoin(id));
 
   useEffect(() => {
     setData(singleCoinData);
@@ -22,7 +23,7 @@ const CoinDisplay = () => {
 
   return (
     <div className={style.container}>
-      <CoinInfo data={data} currency={currency} />
+      <CoinInfo data={data} currency={currency} isLoading={isLoading} />
       <LineChart data={data} />
     </div>
   );

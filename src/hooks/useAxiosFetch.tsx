@@ -3,7 +3,7 @@ import axios from 'axios';
 import { dataList, singleCoinType, historicData } from '../helper/data.types';
 
 const useAxiosFetch = (dataurl: string) => {
-  const [dataList, setDataList] = useState<dataList[] | null>(null);
+  const [dataList, setDataList] = useState<dataList[]>([]);
   const [singleCoinData, setSingleCoinData] = useState<singleCoinType | null>(null);
   const [dataChart, setDataChart] = useState<historicData | null>(null);
   const [error, setError] = useState<string | null | unknown>(null);
