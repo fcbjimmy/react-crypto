@@ -7,9 +7,9 @@ import { AppContext } from '../../context/Context';
 import CoinInfo from '../CoinInfo/CoinInfo';
 import LineChart from '../Chart/LineChart';
 import style from './CoinDisplay.module.scss';
+
 const CoinDisplay = () => {
   const [data, setData] = useState<singleCoinType | null>(null);
-
   const { id } = useParams();
   const { currency } = useContext(AppContext);
 

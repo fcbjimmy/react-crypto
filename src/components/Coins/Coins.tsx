@@ -2,6 +2,7 @@ import { dataList } from '../../helper/data.types';
 import styles from './Coins.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
 
 interface Props {
   coins: dataList[] | null;
@@ -10,10 +11,6 @@ interface Props {
 const Coins = ({ coins }: Props) => {
   const [findCoin, setFindCoin] = useState<string>('');
   const navigate = useNavigate();
-
-  const test = (data: React.MouseEventHandler<HTMLTableRowElement>) => {
-    console.log(data);
-  };
 
   //add debounce
   const searchCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
