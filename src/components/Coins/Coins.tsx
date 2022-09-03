@@ -7,6 +7,8 @@ import useAxiosFetch from '../../hooks/useAxiosFetch';
 import { coinList } from '../../helper/Api';
 import { AppContext } from '../../context/Context';
 import { ClipLoader } from 'react-spinners';
+import Header from '../Header/Header';
+
 const Coins = () => {
   const [coins, setCoins] = useState<dataList[]>([]);
   const [findCoin, setFindCoin] = useState<string>('');
@@ -39,6 +41,7 @@ const Coins = () => {
   return (
     <>
       <section className={styles.container}>
+        <Header />
         <div className={styles.search}>
           <input type='text' placeholder='Search' onChange={searchCoin} />
         </div>

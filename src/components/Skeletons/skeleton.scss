@@ -1,8 +1,16 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 60rem;
+  align-items: center;
 }
 
 .margin {
+  margin-bottom: 1rem;
+}
+
+.text {
+  width: auto;
   margin-bottom: 1rem;
 }

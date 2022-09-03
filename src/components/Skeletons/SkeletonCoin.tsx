@@ -1,5 +1,4 @@
-import React from 'react';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './skeleton.scss';
 
@@ -13,7 +12,7 @@ function SkeletonCoin() {
         <Skeleton width='30%' />
       </div>
       <div className='margin'>
-        <Skeleton count={3} width='80%' />
+        <Skeleton count={3} width='100%' />
       </div>
       <div className='margin'>
         <Skeleton height={50} />

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { dataList, singleCoinType, historicData } from '../helper/data.types';
+import { dataList, singleCoinType, historicData, quotesDataType } from '../helper/data.types';
 
 const useAxiosFetch = (dataurl: string) => {
   const [dataList, setDataList] = useState<dataList[]>([]);
   const [singleCoinData, setSingleCoinData] = useState<singleCoinType | null>(null);
   const [dataChart, setDataChart] = useState<historicData | null>(null);
+  const [quoteData, setQuoteData] = useState<quotesDataType[]>([]);
   const [error, setError] = useState<string | null | unknown>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -21,6 +22,7 @@ const useAxiosFetch = (dataurl: string) => {
           setDataList(res.data);
           setSingleCoinData(res.data);
           setDataChart(res.data);
+          setQuoteData(res.data);
           setError(null);
         }
       } catch (err) {
@@ -42,7 +44,7 @@ const useAxiosFetch = (dataurl: string) => {
     return cleanUp;
   }, [dataurl]);
 
-  return { dataList, singleCoinData, dataChart, error, isLoading };
+  return { dataList, singleCoinData, dataChart, error, isLoading, quoteData };
 };
 
 export default useAxiosFetch;

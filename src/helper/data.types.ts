@@ -29,6 +29,11 @@ export type dataList = {
   total_volume: number;
 };
 
+export type quotesDataType = {
+  author: string;
+  text: string;
+};
+
 export type singleCoinType = {
   ath: number;
   ath_change_percentage: number;

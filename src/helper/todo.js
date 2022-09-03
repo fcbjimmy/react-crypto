@@ -1,5 +1,5 @@
 //add skeleton
-//add buttons to chart
+// just use one set state on axios fetch tsx
 //add carousel quotes and trending coins
-//edit coin description
+
 //host it in netlify

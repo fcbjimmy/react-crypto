@@ -24,10 +24,6 @@ const LineChart = ({ data }: Props) => {
   const handleClick = (value: number) => setDays(value);
   console.log(days);
 
-  // console.log(dataChart?.prices);
-
-  // console.log(days, 'days');
-
   return (
     <>
       {isLoading ? (
