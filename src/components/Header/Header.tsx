@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import useAxiosFetch from '../../hooks/useAxiosFetch';
-import { motivationalQuotes } from '../../helper/Api';
+import axios from 'axios';
+import { AppContext } from '../../context/Context';
 import { quotesDataType } from '../../helper/data.types';
 import style from './Header.module.scss';
 import SkeletonQuote from '../Skeletons/SkeletonQuote';
@@ -9,14 +10,13 @@ import SkeletonCoin from '../Skeletons/SkeletonCoin';
 const getRandomNumber = (n: number) => Math.floor(Math.random() * n);
 
 const Header = () => {
-  const [quotes, setQuotes] = useState<quotesDataType[]>([]);
-  const { quoteData, isLoading } = useAxiosFetch(motivationalQuotes());
+  const { isLoading, quoteData, fetchQuotes } = useContext(AppContext);
 
   useEffect(() => {
-    setQuotes(quoteData);
-  }, [quotes, quoteData]);
+    fetchQuotes();
+  }, []);
 
-  const randomQuote = quotes[getRandomNumber(quotes.length)];
+  const randomQuote = quoteData[getRandomNumber(quoteData.length)];
 
   return (
     <>

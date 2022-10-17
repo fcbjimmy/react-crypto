@@ -11,18 +11,21 @@ import Button from '../Button/Button';
 import { buttonValues } from '../../helper/chart';
 
 interface Props {
-  data: singleCoinType | null;
+  id: string | undefined;
 }
 
-const LineChart = ({ data }: Props) => {
+const LineChart = ({ id }: Props) => {
   const [days, setDays] = useState<number>(1);
-  const { currency } = useContext(AppContext);
-  const { dataChart, isLoading } = useAxiosFetch(historicalData(data?.id, currency, days));
+  const { fetchHistoricData, isLoading, dataChart, currency } = useContext(AppContext);
+  // const { dataChart, isLoading } = useAxiosFetch(historicalData(data?.id, currency, days));
+
+  useEffect(() => {
+    fetchHistoricData(id, days);
+  }, [id, days, currency]);
 
   ChartJS.register(...registerables);
 
   const handleClick = (value: number) => setDays(value);
-  console.log(days);
 
   return (
     <>

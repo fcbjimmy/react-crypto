@@ -10,21 +10,24 @@ import style from './CoinDisplay.module.scss';
 import Skeleton from 'react-loading-skeleton';
 
 const CoinDisplay = () => {
-  const [data, setData] = useState<singleCoinType | null>(null);
+  // const [data, setData] = useState<singleCoinType | null>(null);
   const { id } = useParams();
-  const { currency } = useContext(AppContext);
+  const { currency, fetchSingleCoin, isLoading, singleCoinData } = useContext(AppContext);
 
-  const { singleCoinData, isLoading } = useAxiosFetch(singleCoin(id));
+  // const { singleCoinData, isLoading } = useAxiosFetch(singleCoin(id));
+
+  // useEffect(() => {
+  //   setData(singleCoinData);
+  // }, [data, id, singleCoinData]);
 
   useEffect(() => {
-    setData(singleCoinData);
-    console.log(data?.market_data.current_price.hkd);
-  }, [data, id, singleCoinData]);
+    fetchSingleCoin(id);
+  }, [id]);
 
   return (
     <div className={style.container}>
-      <CoinInfo data={data} currency={currency} isLoading={isLoading} />
-      <LineChart data={data} />
+      <CoinInfo />
+      <LineChart id={id} />
     </div>
   );
 };

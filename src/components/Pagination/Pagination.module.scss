@@ -1,0 +1,22 @@
+@use '../../styles/variables' as mixin;
+
+.pagination {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.button {
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin: 0.2rem;
+  background-color: map-get(mixin.$colors, 'white');
+  transition: all 0.5s;
+}
+
+.activeButton {
+  font-size: 1rem;
+  padding: 0.2rem;
+  margin: 0.2rem;
+  background-color: map-get(mixin.$colors, 'yellow');
+  transition: all 0.5s;
+}

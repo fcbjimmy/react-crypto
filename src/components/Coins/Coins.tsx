@@ -8,35 +8,32 @@ import { coinList } from '../../helper/Api';
 import { AppContext } from '../../context/Context';
 import { ClipLoader } from 'react-spinners';
 import Header from '../Header/Header';
+import Pagination from '../Pagination/Pagination';
 
 const Coins = () => {
-  const [coins, setCoins] = useState<dataList[]>([]);
+  // const [coins, setCoins] = useState<dataList[]>([]);
   const [findCoin, setFindCoin] = useState<string>('');
-  const [page, setPage] = useState<number>(1);
-  const { currency } = useContext(AppContext);
-  const { dataList, isLoading } = useAxiosFetch(coinList(currency, page));
+  const { currency, isLoading, fetchData, coins, currentPage } = useContext(AppContext);
+  // const { dataList, isLoading } = useAxiosFetch(coinList(currency, page));
+  const [itemsPerPage, SetItemsPerPage] = useState<number>(10);
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setCoins((prev) => [...prev, ...dataList]);
-  }, [currency, dataList]);
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
-      document.documentElement.scrollHeight
-    ) {
-      setPage((prev) => prev + 1);
-    }
-  };
+  // useEffect(() => {
+  //   setCoins((prev) => [...prev, ...dataList]);
+  // }, [currency, dataList]);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-  }, []);
+    fetchData();
+  }, [currency, currentPage]);
 
   const searchCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFindCoin(e.target.value);
   };
+
+  const lastItemsIndex = currentPage * itemsPerPage; //20 = 1*10
+  const firstItemsIndex = lastItemsIndex - itemsPerPage; //0 = 10-10
+  const currentCoins = coins?.slice(firstItemsIndex, lastItemsIndex);
 
   return (
     <>
@@ -56,7 +53,7 @@ const Coins = () => {
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
-            {coins
+            {currentCoins
               ?.filter((data) => {
                 if (findCoin === '') {
                   return data;
@@ -91,7 +88,7 @@ const Coins = () => {
                         coin.price_change_percentage_24h > 0 ? styles.positive : styles.negative
                       }
                     >
-                      <span>{coin.price_change_percentage_24h.toFixed(2)}%</span>
+                      <span>{coin.price_change_percentage_24h?.toFixed(2)}%</span>
                     </td>
                     <td data-label='Volume'>
                       <span>${coin.total_volume.toLocaleString('en-US')}</span>
@@ -105,6 +102,7 @@ const Coins = () => {
           </tbody>
         </table>
         {isLoading && <ClipLoader color='#fff' />}
+        <Pagination itemsPerPage={itemsPerPage} />
       </section>
     </>
   );

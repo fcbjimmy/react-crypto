@@ -6,7 +6,6 @@ import Coins from './components/Coins/Coins';
 import CoinDisplay from './components/CoinDisplay/CoinDisplay';
 import { Route, Routes } from 'react-router-dom';
 import { AppContext } from './context/Context';
-import { coinList } from './helper/Api';
 import useAxiosFetch from './hooks/useAxiosFetch';
 import { SkeletonTheme } from 'react-loading-skeleton';
 

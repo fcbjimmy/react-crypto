@@ -1,5 +1,3 @@
-import { type } from 'os';
-
 export type dataList = {
   ath: number;
   ath_change_percentage: number;
