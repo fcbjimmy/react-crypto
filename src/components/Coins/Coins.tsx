@@ -1,27 +1,18 @@
 import { useContext, useEffect } from 'react';
-import { dataList } from '../../helper/data.types';
 import styles from './Coins.module.scss';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAxiosFetch from '../../hooks/useAxiosFetch';
-import { coinList } from '../../helper/Api';
 import { AppContext } from '../../context/Context';
 import { ClipLoader } from 'react-spinners';
 import Header from '../Header/Header';
 import Pagination from '../Pagination/Pagination';
 
 const Coins = () => {
-  // const [coins, setCoins] = useState<dataList[]>([]);
   const [findCoin, setFindCoin] = useState<string>('');
   const { currency, isLoading, fetchData, coins, currentPage } = useContext(AppContext);
-  // const { dataList, isLoading } = useAxiosFetch(coinList(currency, page));
   const [itemsPerPage, SetItemsPerPage] = useState<number>(10);
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   setCoins((prev) => [...prev, ...dataList]);
-  // }, [currency, dataList]);
 
   useEffect(() => {
     fetchData();

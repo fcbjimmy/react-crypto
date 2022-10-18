@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   const { setCurrency, currency } = useContext(AppContext);
 
-  console.log(currency);
   return (
     <nav className={styles.navbar}>
       <div className={styles.content}>

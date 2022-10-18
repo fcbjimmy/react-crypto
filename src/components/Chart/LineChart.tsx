@@ -1,8 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { historicalData } from '../../helper/Api';
-import { singleCoinType } from '../../helper/data.types';
 import { AppContext } from '../../context/Context';
-import useAxiosFetch from '../../hooks/useAxiosFetch';
 import { ClipLoader } from 'react-spinners';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart, Line } from 'react-chartjs-2';
@@ -17,7 +14,6 @@ interface Props {
 const LineChart = ({ id }: Props) => {
   const [days, setDays] = useState<number>(1);
   const { fetchHistoricData, isLoading, dataChart, currency } = useContext(AppContext);
-  // const { dataChart, isLoading } = useAxiosFetch(historicalData(data?.id, currency, days));
 
   useEffect(() => {
     fetchHistoricData(id, days);
