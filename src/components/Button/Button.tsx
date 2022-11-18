@@ -1,10 +1,12 @@
 import React from 'react';
 import style from './Button.module.scss';
-type Props = {
+
+interface Props {
   children: string | number;
   selected: boolean;
-  onClick: () => void;
-};
+  onClick(): void;
+  // onClick: () => void;
+}
 
 const Button = ({ children, selected, onClick }: Props) => {
   return (
